@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="/socket.io/socket.io.js"></script>
+  </head>
+  <body>
+    <div class="filterBook-wrap">
+      <form action="" class="filterBookForm">
+        <input type="text" class="nameBook" name="nameBook" placeholder="Названия книги">
+        <input type="text" class="authorBook" name="authorBook" placeholder="Имя автора">
+        <input type="text" class="genreBook" name="genreBook" placeholder="Жанр книги">
+
+        <button class="btnForm" type="submit">Submit</button>
+      </form>
+       <div class="booksBlock"></div>
+    </div>
+    <script src="/javascripts/main.js"></script>
+  </body>
+</html>
