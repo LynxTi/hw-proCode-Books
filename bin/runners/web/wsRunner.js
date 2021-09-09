@@ -1,5 +1,6 @@
 const WebSocketServer =  require('ws');
 const sio = require('socket.io'); 
+const findBook = require('../../../controlers/findBook')
 // const dbMongoRunner = require ('./mongoDB');
 
  /**
@@ -10,14 +11,11 @@ const sio = require('socket.io');
 
     io.on('connection', (socket)=> {
         // let inform = null;
-        socket.on('/creatNewArticle', async (data) => {
-            const { articleName, article} = data;
-            
-            // dbMongoRunner.runner();
-            // dbMongoRunner.createNewArticle(articleName, article);
-            // const allartcile = await dbMongoRunner.findAllArticle();
-
-            socket.emit('/returAllArticle', allartcile );
+        socket.on('/findBooks', async (data) => {
+            const { nameBook, authorBook, genreBook} = data;
+            const books = await findBook(nameBook, authorBook, genreBook);
+            console.log('вернулось ', books);
+            // socket.emit('/returAllArticle', allartcile );
         });
 
         socket.on('disconnect', () => {

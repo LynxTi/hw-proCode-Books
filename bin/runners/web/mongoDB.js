@@ -17,20 +17,12 @@ const run = () => {
 
     db.once('open', () => {
         console.log('Conected DB');
-    console.log(12313231232312132312231);
 
     });
 
     db.once('close', () => {
         console.log('DB close');
     });
-    const authrModel = require('../../../models/author');
-
-    authrModel.create({name: 'Д.Кори'})
-    authrModel.create({name: 'Б.Сандерсон'})
-    authrModel.create({name: 'В.Пехов'})
-    authrModel.create({name: 'Р.Вегнер'})
-    authrModel.create({name: 'А.Сапковский'})
 }
 
 module.exports = run;

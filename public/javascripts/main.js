@@ -1,26 +1,29 @@
 // const { socket } = require("socket.io");
 const socket = io();
 
-const form = document.querySelector('.newArticleForm');
-const articlesBlock = document.querySelector('.articlesBlock');
+const form = document.querySelector('.filterBookForm');
+const booksBlock = document.querySelector('.booksBlock');
 
 form.addEventListener('submit', (ev) => {
     ev.preventDefault();
 
     const formData = new FormData(ev.target);
-    const userArticleName = formData.get('nameArticle');
-    const userAticle = formData.get('bodyArticle');
+    const nameBook = formData.get('nameBook');
+    const authorBook  = formData.get('authorBook');
+    const genreBook  = formData.get('genreBook');
+    console.log('1: ', nameBook);
+    console.log('2: ', authorBook);
+    console.log('3: ', genreBook);
 
-        // if (userArticle !== '') {
-            socket.emit('/creatNewArticle', { articleName: userArticleName, article: userAticle });
-        // }
+
+        socket.emit('/findBooks', { nameBook: nameBook, authorBook: authorBook, genreBook: genreBook });
 
  
 });
 
-const renderArticleBlock = (articlesArr) => {
-    const articlesHtml = articlesArr.reduce((htmlcode, artcile) => {
-        htmlcode += `<div>${artcile.name}</div>`
+const renderArticleBlock = (booksArr) => {
+    const articlesHtml = booksArr.reduce((htmlcode, book) => {
+        htmlcode += `<div>${book.name}</div>`
         return htmlcode;
     }, '');
 
@@ -28,7 +31,7 @@ const renderArticleBlock = (articlesArr) => {
 
 }
 
-socket.on(`/returAllArticle`, (data) => {
+socket.on(`/returnBooks`, (data) => {
     renderArticleBlock(data)
 });
 
